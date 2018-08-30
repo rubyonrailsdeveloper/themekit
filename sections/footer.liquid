@@ -72,13 +72,13 @@
 
     <div class="grid footer-secondary-wrapper">
       <ul class="footer-secondary grid__item inline-list">
-          <li><a href="{{ shop.secure_url }}" itemprop="url">&copy; {{ shop.name }} {{ 'now' | date: "%Y" }}</a></li>
+<!--           <li></li> -->
         {% for link in linklists[section.settings.footer_secondary_linklist].links %}
           <li><a href="{{ link.url }}">{{ link.title }}</a></li>
         {% endfor %}
         <!-- Remove the following two lines to delete Shopify and Pipeline credit -->
-          <li>{{ powered_by_link }}</li>
-          <li><a href="http://corknine.com">{{ 'layout.footer.credit' | t }}</a></li>
+<!--           <li>{{ powered_by_link }}</li>
+          <li><a href="http://corknine.com">{{ 'layout.footer.credit' | t }}</a></li> -->
         <!-- stop deleting here :) -->
       </ul>
 
@@ -107,19 +107,19 @@
             </a>
           </li>
         {% endif %}
-        {% if settings.social_facebook_link != blank %}
-          <li>
-            <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook" target="_blank" itemprop="sameAs">
-              <span class="icon icon-facebook" aria-hidden="true"></span>
-              <span class="fallback-text">Facebook</span>
-            </a>
-          </li>
-        {% endif %}
         {% if settings.social_instagram_link != blank %}
           <li>
             <a class="icon-fallback-text" href="{{ settings.social_instagram_link }}" title="{{ shop.name }} on Instagram" target="_blank" itemprop="sameAs">
               <span class="icon icon-instagram" aria-hidden="true"></span>
               <span class="fallback-text">Instagram</span>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.social_facebook_link != blank %}
+          <li>
+            <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook" target="_blank" itemprop="sameAs">
+              <span class="icon icon-facebook" aria-hidden="true"></span>
+              <span class="fallback-text">Facebook</span>
             </a>
           </li>
         {% endif %}
@@ -173,6 +173,9 @@
         {% endif %}
       </ul>
       {% endif %}
+      <div class="copyright-wrapper">
+      	<a href="{{ shop.secure_url }}" itemprop="url">&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. all rights reserved. </a>
+      </div>      
     </div>
   </div>
 </footer>

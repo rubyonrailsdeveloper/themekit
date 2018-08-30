@@ -33,6 +33,7 @@
 
   <!-- CSS ================================================================== -->
   {{ 'style.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'custom.scss.css' | asset_url | stylesheet_tag }}
 
   <!-- Modernizr ============================================================ -->
   {{ 'modernizr.min.js' | asset_url | script_tag }}
@@ -73,7 +74,9 @@
   <main class="main-content" role="main">
     {{ content_for_layout }}
   </main>
-
+  <div class="{% if template == 'index' %} instagram-hidden{% endif %}">
+  	{% section 'index-instagram' %}
+  </div>
   {% section 'footer' %}
 
   <script id="JsQty" type="text/template">

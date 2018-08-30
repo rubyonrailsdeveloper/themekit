@@ -294,7 +294,7 @@
       "next_product_html": "&rarr;",
       "from_text_html": "From {{ price }}",
       "from": "From",
-      "related": "Related"
+      "related": "OTHER PRODUCTS YOU MAY LIKE"
     },
     "product": {
       "sold_out": "Sold Out",
@@ -302,7 +302,7 @@
       "unavailable": "Unavailable",
       "compare_at": "Compare at",
       "quantity": "Quantity",
-      "add_to_cart": "Add to Cart",
+      "add_to_cart": "Add to BAG",
       "join_membership": "Join Now"
     }
   },

@@ -13,15 +13,14 @@
 {% endif %}
 
 <div itemscope itemtype="http://schema.org/Product" class="product-page">
-  <div class="wrapper">
+  {% if section.settings.product_breadcrumbs %}
+  	{% include 'breadcrumb' %}
+  {% endif %}
+  <div class="wrapper product-template-wrapper">
 
     <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
     <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
-
-    {% if section.settings.product_breadcrumbs %}
-      {% include 'breadcrumb' %}
-    {% endif %}
-
+    
     {% assign current_variant = product.selected_or_first_available_variant %}
 
     {%- assign product_image_width = 'large--two-thirds' -%}
@@ -66,21 +65,21 @@
       </div>
 
       <div class="grid__item {{ product_description_width }}" id="productInfo-{{ section.id }}">
-        <div class="text-center">
-          <h5 class="product__price uppercase h5{% if current_variant.compare_at_price > current_variant.price %} on-sale{% endif %}">
-            <span class="money"><span id="ProductPrice-{{ section.id }}">{{ current_variant.price | money }}</span></span>
-
-            <p class="small compare-at em" id="ComparePriceWrapper-{{ section.id }}" {% unless current_variant.compare_at_price > current_variant.price %}style="display: none"{% endunless %}>
-            <span class="money"><span id="ComparePrice-{{ section.id }}">{{ product.compare_at_price_max | money }}</span></span>
-            </p>
-          </h5>
-
+        <div class="text-left">
 
           {% if section.settings.product_show_vendor and product.vendor %}
             <p class="uppercase vendor__link">{{ product.vendor | link_to_vendor }}</p>
           {% endif %}
-          <h1 itemprop="name" class="h2">{{ product.title }}</h1>
+          <h1 itemprop="name" class="h2">Carrots by Anwar Carrots</h1>
+          <p>		{{ product.title }}</p>
+          <h5 class="product__price uppercase h5{% if current_variant.compare_at_price > current_variant.price %} on-sale{% endif %}">
+            <span class="money"><span id="ProductPrice-{{ section.id }}">{{ current_variant.price | money }}</span></span>
 
+            <p class="small compare-at em" id="ComparePriceWrapper-{{ section.id }}" {% unless current_variant.compare_at_price > current_variant.price %}style="display: none"{% endunless %}>
+              <span class="money"><span id="ComparePrice-{{ section.id }}">{{ product.compare_at_price_max | money }}</span></span>
+            </p>
+          </h5>
+          
           {% comment %}
             If the product description is over 1000 characters or contains an embed code,
             place the description in a full width container below the image and cart button.
@@ -115,7 +114,7 @@
           {% endif %}
         </div>
 
-        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="select-container-wrapper">
 
           <meta itemprop="priceCurrency" content="{{ shop.currency }}">
           <meta itemprop="price" content="{{ product.selected_or_first_available_variant.price | divided_by: 100 }}">
@@ -128,11 +127,18 @@
 
             {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
               {% for option in product.options_with_values %}
-                <div class="selector-wrapper js">
+                <div class="selector-wrapper js {% if option.name == "Size" %} size-wrapper {% else %} product-selector-wrapper {% endif %}">
                   <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
                     {{ option.name }}
                   </label>
                   <select class="single-option-selector single-option-selector-{{ section.id }}" id="SingleOptionSelector-{{ forloop.index0 }}" data-section="{{ section.id }}" data-index="option{{ forloop.index }}">
+                    {% if option.name == "Size" %} 
+                       <option selected="selected">SIZE</option>
+                    {% elsif option.name == "Color" %} 
+                      <option selected="selected">COLOR</option>
+                    {% elsif option.name == "Material" %}                     
+                      <option selected="selected">MATERIAL</option>
+                    {% endif %}
                     {% for value in option.values %}
                       {% assign variant_avialable = true %}
                       {% if product.options.size == 1 %}
@@ -143,6 +149,9 @@
                       <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}{% unless variant_avialable %} - {{ 'products.product.sold_out' | t }}{% endunless %}</option>
                     {% endfor %}
                   </select>
+                  {% if option.name == "Size" %}
+                  	{{ '1.png' | asset_url | img_tag }}
+                  {% endif %}
                 </div>
               {% endfor %}
             {% endunless %}
@@ -174,8 +183,8 @@
             <div class="add-to-cart__wrapper">
               <button type="submit" name="add" id="AddToCart-{{ section.id }}" class="btn btn--large btn--full btn--clear uppercase addToCart{% if sold_out %} disabled{% endif %}" {% if sold_out %}disabled="true"{% endif %}>
                 <span id="AddToCartText-{{ section.id }}">{% if sold_out %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endif %}</span>
-                <span class="unicode">&#x2022</span>
-                <span class="add-to-cart__price money"><span class="buttonPrice" id="ButtonPrice-{{ section.id }}" data-item-price="{{ current_variant.price }}">{{ current_variant.price | money }}</span></span>
+<!--                 <span class="unicode">&#x2022</span> -->
+<!--                 <span class="add-to-cart__price money"><span class="buttonPrice" id="ButtonPrice-{{ section.id }}" data-item-price="{{ current_variant.price }}">{{ current_variant.price | money }}</span></span> -->
               </button>
             </div>
           </form>
@@ -239,24 +248,46 @@
             </p>
           {% endif %}
         {% endif %}
+        
+        {% if description_position == 'below' %}
+          <div class="product-description-wrapper">
+            <span>Product Details</span>
+            <div class="product-description--below rte" itemprop="description">
+              {{ product.description }}
+            </div>
+          </div>
+          {% elsif description_position == 'both' %}
+          <div class="product-description-wrapper">
+            <span>Product Details</span>
+            <div class="product-description--below rte" itemprop="description">
+              {{ product.description | replace: '<p>[split]</p>', '[split]' | split: '[split]' | last }}
+            </div>
+          </div>
+        {% endif %}
+          <ul class="social-icons social-icons-wrapper grid__item inline-list">
+              <li>
+                <a class="icon-fallback-text" href="https://twitter.com/shopify" title="{{ shop.name }} on Twitter" target="_blank" itemprop="sameAs">
+                  <span class="icon icon-twitter" aria-hidden="true"></span>
+                  <span class="fallback-text">Twitter</span>
+                </a>
+              </li>
+              <li>
+                <a class="icon-fallback-text" href="https://facebook.com/shopify" title="{{ shop.name }} on Instagram" target="_blank" itemprop="sameAs">
+                  <span class="icon icon-instagram" aria-hidden="true"></span>
+                  <span class="fallback-text">Instagram</span>
+                </a>
+              </li>
+              <li>
+                <a class="icon-fallback-text" href="https://instagram.com/shopify" title="{{ shop.name }} on Facebook" target="_blank" itemprop="sameAs">
+                  <span class="icon icon-facebook" aria-hidden="true"></span>
+                  <span class="fallback-text">Facebook</span>
+                </a>
+              </li>
+          </ul>
       </div>
     </div>
   </div>
 </div>
-{% if description_position == 'below' %}
-  <div class="wrapper">
-    <div class="product-description--below rte" itemprop="description">
-      {{ product.description }}
-    </div>
-  </div>
-{% elsif description_position == 'both' %}
-  <div class="wrapper">
-    <div class="product-description--below rte" itemprop="description">
-      {{ product.description | replace: '<p>[split]</p>', '[split]' | split: '[split]' | last }}
-    </div>
-  </div>
-{% endif %}
-
 {% unless product_home %}
 <div class="wrapper">
   <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>

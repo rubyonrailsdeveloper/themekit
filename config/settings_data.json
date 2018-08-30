@@ -1,7 +1,7 @@
 {
   "current": {
-    "color_account_bg": "#000000",
-    "color_account_text": "#ffffff",
+    "color_account_bg": "#ffffff",
+    "color_account_text": "#303032",
     "color_header_bg": "#ffffff",
     "color_header_text": "#333333",
     "color_body_bg": "#ffffff",
@@ -9,18 +9,18 @@
     "color_primary": "#333333",
     "color_splash": "#1391a4",
     "color_border": "#cccccc",
-    "homepage_background_light": "#f7f7f7",
+    "homepage_background_light": "#ffffff",
     "homepage_background_dark": "#2e3438",
-    "product_background_color": "#f6f6f6",
+    "product_background_color": "#ffffff",
     "product_slideshow_arrows": "#cccccc",
-    "color_footer_bg": "#f2f2f2",
-    "color_footer_text": "#333333",
+    "color_footer_bg": "#29292b",
+    "color_footer_text": "#ffffff",
     "color_footer_social_link": "#2e3438",
-    "font_title": "google:sansStack:Oswald:400",
+    "font_title": "myriadRegular",
     "font_title_capitalize": true,
-    "font_accent": "google:sansStack:Montserrat:400",
-    "font_body": "google:serifStack:PT+Serif:400",
-    "base_font_size": "14px",
+    "font_accent": "myriadRegular",
+    "font_body": "myriadRegular",
+    "base_font_size": "16px",
     "cart_type": "modal",
     "cart_show_on_click": true,
     "cart_vendor_enable": false,
@@ -32,9 +32,9 @@
     "product_grid_style": "hover",
     "image_autoheight_enable": true,
     "twittercard_handle": "",
-    "social_twitter_link": "",
-    "social_facebook_link": "",
-    "social_instagram_link": "",
+    "social_twitter_link": "https:\/\/twitter.com\/shopify",
+    "social_facebook_link": "https:\/\/facebook.com\/shopify",
+    "social_instagram_link": "https:\/\/instagram.com\/shopify",
     "social_pinterest_link": "",
     "social_google_link": "",
     "social_youtube_link": "",
@@ -58,8 +58,8 @@
     "checkout_sidebar_background_color": "#fafafa",
     "checkout_heading_font": "Helvetica Neue",
     "checkout_body_font": "Helvetica Neue",
-    "checkout_accent_color": "#1990C6",
-    "checkout_button_color": "#1990C6",
+    "checkout_accent_color": "#1990c6",
+    "checkout_button_color": "#1990c6",
     "checkout_error_color": "#ff6d6d",
     "checkout_use_header_image": false,
     "checkout_logo": "",
@@ -75,56 +75,31 @@
           "height": "header--medium",
           "meganav_image": "",
           "meganav_link": "",
-          "header_message": "Your announcement text",
+          "header_message": "",
           "header_message_url": "",
-          "header_enable_account": true,
-          "header_enable_search": true,
+          "header_enable_account": false,
+          "header_enable_search": false,
           "search_only_products": false
         }
       },
       "footer": {
         "type": "footer",
-        "blocks": {
-          "linklist": {
-            "type": "linklist",
-            "settings": {
-              "linklist": "main-menu"
-            }
-          },
-          "text": {
-            "type": "text",
-            "settings": {
-              "title": "Text column",
-              "text": "<p>Share store details, promotions, or brand content with your customers.<\/p>"
-            }
-          },
-          "newsletter": {
-            "type": "newsletter",
-            "settings": {
-              "text": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals."
-            }
-          }
-        },
-        "block_order": [
-          "linklist",
-          "text",
-          "newsletter"
-        ],
         "settings": {
-          "footer_image": "",
+          "footer_image": "shopify:\/\/shop_images\/2.png",
           "footer_secondary_linklist": "footer",
-          "footer_payment_enable": true,
+          "footer_payment_enable": false,
           "footer_social_enable": true
         }
       },
       "product": {
         "type": "product",
         "settings": {
-          "description_position": "auto",
+          "description_position": "below",
           "product_breadcrumbs": true,
           "show_quantity": true,
           "product_nav_enable": false,
           "product_show_vendor": false,
+          "zoom_enable": false,
           "related_products_enable": true
         }
       },
@@ -194,7 +169,8 @@
           "home_product": "",
           "homepage_product_color": "homepage--white",
           "show_quantity": true,
-          "product_show_vendor": false
+          "product_show_vendor": false,
+          "zoom_enable": false
         }
       },
       "index-collection": {
@@ -204,7 +180,8 @@
           "collection": "",
           "grid": "4",
           "rows": "2",
-          "homepage_collection_color": "homepage--white"
+          "homepage_collection_color": "homepage--white",
+          "show_view_all": false
         }
       },
       "index-video": {
@@ -225,11 +202,11 @@
       "index-instagram": {
         "type": "index-instagram",
         "settings": {
-          "title": "Instagram",
+          "title": "",
           "homepage_instagram_color": "homepage--white",
           "token": "",
-          "instagram_photo_count": "6",
-          "instagram_grid_width_large": "large--one-sixth",
+          "instagram_photo_count": "5",
+          "instagram_grid_width_large": "large--one-fifth",
           "instagram_grid_width_medium": "medium--one-third",
           "instagram_grid_width_small": "small--one-third"
         }

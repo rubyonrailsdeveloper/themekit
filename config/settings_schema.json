@@ -270,6 +270,11 @@
             "value": "google:serifStack:Glegoo:400",
             "label": "Glegoo",
             "group": "Serif"
+          },
+          {
+            "value": "myriadRegular",
+            "label": "myriad",
+            "group": "myriad"
           }
         ]
       },
@@ -402,6 +407,11 @@
             "value": "google:serifStack:Glegoo:400",
             "label": "Glegoo",
             "group": "Serif"
+          },
+          {
+            "value": "myriadRegular",
+            "label": "myriad",
+            "group": "myriad"
           }
         ]
       },
@@ -529,6 +539,11 @@
             "value": "google:serifStack:Glegoo:400",
             "label": "Glegoo",
             "group": "Serif"
+          },
+          {
+            "value": "myriadRegular",
+            "label": "myriad",
+            "group": "myriad"
           }
         ]
       },

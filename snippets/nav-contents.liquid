@@ -46,8 +46,15 @@
       {% include 'nav-item' %}
     {% endfor %}
     <li class="cart-text-link">
-      <a href="/cart" class="CartToggle">
-        {{ 'layout.cart.title' | t }}
+      <div class="header-search">
+        <form action="/search" method="get" class="input-group search" role="search">
+          {% if section.settings.search_only_products %}<input type="hidden" name="type" value="product">{% endif %}
+          <input class="search-bar" type="search" name="q">
+          <button type="submit" class="btn search-btn"></button>
+        </form>
+      </div>
+      <a href="/cart" class="CartToggle">       
+ 		{{ 'bag.png' | asset_url | img_tag }}
         <span class="cartCost {% if cart.item_count < 1 %} hidden-count {% endif %}">(<span class="money">{{ cart.total_price | money }}</span>)</span>
       </a>
     </li>

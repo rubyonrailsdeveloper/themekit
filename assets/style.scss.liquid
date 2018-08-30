@@ -301,6 +301,21 @@ $accentFontStack: {{accent-FontStack}};
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'myriad';
+  src: url('{{ "myriadpro-light.ttf" | asset_url }}');
+  src: url('{{ "myriadpro-light.ttf" | asset_url }}') format('truetype');       
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'myriadRegular';
+  src: url('{{ "Myriad_Pro_Regular.ttf" | asset_url }}');
+  src: url('{{ "Myriad_Pro_Regular.ttf" | asset_url }}') format('truetype');       
+  font-weight: normal;
+  font-style: normal;
+}
 $socialIconFontStack: 'icons';
 
 body,
@@ -2049,7 +2064,7 @@ $infoBarPadding: 5px;
 .site-header {
   position: relative;
   background-color: $colorNav;
-  border-bottom: 1px solid $colorNavBorder;
+/*   border-bottom: 1px solid $colorNavBorder; */
 }
 .logo-wrapper{
   max-width: 80%;
@@ -2062,6 +2077,7 @@ $infoBarPadding: 5px;
   a{
     text-decoration: none;
     color: $colorNavText;
+    letter-spacing: 14px;
   }
   a:hover,
   a:focus {
@@ -2676,7 +2692,7 @@ $infoBarPadding: 5px;
   padding-bottom: $gutter/2;
   margin-bottom: $gutter;
   position: relative;
-  &::after{
+/*   &::after{
     content: "";
     margin: auto;
     width: 30px;
@@ -2687,7 +2703,7 @@ $infoBarPadding: 5px;
     right: 0;
     background: black;
     opacity: 0.2;
-  }
+  } */
 }
 
 a .home__title,
@@ -3550,7 +3566,7 @@ a .price_wrapper{
     padding: $gutter/2 0;
   }
   .product-grid-item .figcaption.hover .price_wrapper{
-    opacity: 0;
+    opacity: 1;
     -ms-transform: translate(0px,10px); /* IE 9 */
     -webkit-transform: translate(0px,10px); /* Safari */
     transform: translate(0px,10px);
@@ -3912,9 +3928,9 @@ $borderSpacing: 10px;
 .selector-wrapper select,
 .product-form__variants{
   margin: 0 auto 2em auto;;
-  border-left: none;
+/*   border-left: none;
   border-right: none;
-  border-top: none;
+  border-top: none; */
   border-radius: 0px;
   text-align-last:center;
   padding-left: 28px;
