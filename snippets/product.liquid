@@ -65,13 +65,14 @@
           {% endfor %}
         </div>
         <div id="ProductThumbs-{{ section.id }}" class="product__thumbs--square"></div>
+        {% if product.title =="T-Shirt" %}
         <div class="product-customizer-wrapper">
           <div class="product">
-          	<input type="text" id="text" placeholder="Please input name" /> 
+          	<input type="text" id="text" placeholder="Please input name and number" /> 
             <input type="color" value="" id="text-color" size="10" />
           </div>          
         </div>
-        
+        {% endif %}
       </div>
 
       <div class="grid__item {{ product_description_width }}" id="productInfo-{{ section.id }}">
